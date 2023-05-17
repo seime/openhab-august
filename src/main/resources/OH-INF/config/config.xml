@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config-description:config-descriptions
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:config-description="https://openhab.org/schemas/config-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/config-description/v1.0.0
+https://openhab.org/schemas/config-description-1.0.0.xsd">
+
+	<config-description uri="thing-type:august:account">
+		<parameter name="ecoSystem" type="text">
+			<label>Ecosystem</label>
+			<description>Use 'Yale Home' if you have already migrated your account to the new Yale Home App, 'August' otherwise.
+				NOTE: If you currently are on August, but migrate to the new Yale Home App, a new 2 factor login is required.</description>
+			<default>AUGUST</default>
+			<options>
+				<option value="AUGUST">August</option>
+				<option value="YALE_HOME">Yale Home</option>
+			</options>
+		</parameter>
+
+		<parameter name="phone" type="text" required="true">
+			<label>Yale Access/August account phone number</label>
+			<description>Your registered app phone number</description>
+		</parameter>
+		<parameter name="email" type="text" required="true">
+			<label>Yale Access/August account email address</label>
+			<description>Your registered app email address</description>
+		</parameter>
+		<parameter name="password" type="text" required="true">
+			<label>Yale Access/August account password</label>
+			<description>Your registered app password</description>
+			<context>password</context>
+		</parameter>
+		<parameter name="validationCode" type="text" required="false">
+			<label>Validation code received via email</label>
+			<description>Code received via email upon first login attempt. 6 digits</description>
+			<context>password</context>
+		</parameter>
+
+		<parameter name="refreshIntervalSeconds" type="integer" min="30" unit="s">
+			<label>Refresh Interval</label>
+			<description>How often in seconds to fetch account updates from August service (polling interval). Note that locks
+				receive push messages and needs no polling.</description>
+			<default>3600</default>
+			<advanced>true</advanced>
+		</parameter>
+	</config-description>
+
+	<config-description uri="thing-type:august:lock">
+		<parameter name="lockId" type="text" required="true">
+			<label>Lock ID</label>
+			<description>Id of lock, format 32 digits/characters (hex string)</description>
+		</parameter>
+	</config-description>
+
+</config-description:config-descriptions>

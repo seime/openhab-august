@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.openhab.addons.bundles</groupId>
+    <artifactId>org.openhab.addons.reactor.bundles</artifactId>
+    <version>3.4.3</version>
+  </parent>
+
+  <artifactId>org.openhab.binding.august</artifactId>
+
+  <name>openHAB Add-ons :: Bundles :: August Binding</name>
+
+  <properties>
+    <bnd.importpackage>
+      kotlin.internal.jdk7;resolution:=optional,kotlin.internal.jdk8;resolution:=optional,android.*;resolution:=optional,org.bouncycastle.*;resolution:=optional,org.openjsse.javax.net.ssl.*;resolution:=optional,org.openjsse.net.ssl.*;resolution:=optional,com.android.org.*;resolution:=optional,dalvik.*;resolution:=optional,javax.annotation.meta.*;resolution:=optional,org.apache.harmony.*;resolution:=optional,org.conscrypt.*;resolution:=optional,sun.security.*;resolution:=optional,org.apache.http.*;resolution:=optional
+    </bnd.importpackage>
+    <oh.java.version>17</oh.java.version>
+    <maven.compiler.source>${oh.java.version}</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.compilerVersion>${oh.java.version}</maven.compiler.compilerVersion>
+    <spotless.version>2.36.0</spotless.version>
+  </properties>
+
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/seime/openhab-fyta</url>
+    </snapshotRepository>
+    <repository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/seime/openhab-fyta</url>
+    </repository>
+  </distributionManagement>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.9</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20180813</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.pubnub</groupId>
+      <artifactId>pubnub-gson</artifactId>
+      <version>6.3.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-common</artifactId>
+      <version>1.5.31</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>1.6.20</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-cbor</artifactId>
+      <version>2.12.7</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>2.12.7</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.12.7</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.12.7.1</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-jdk8</artifactId>
+      <version>1.7.20</version>
+      <scope>compile</scope>
+      </dependency>
+      <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-jdk7</artifactId>
+      <version>1.6.10</version>
+      <scope>compile</scope>
+      </dependency> -->
+    <dependency>
+      <groupId>org.jetbrains.kotlinx</groupId>
+      <artifactId>kotlinx-coroutines-core</artifactId>
+      <version>1.6.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-reflect</artifactId>
+      <version>1.6.10</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson -->
+    <dependency>
+      <groupId>com.squareup.retrofit2</groupId>
+      <artifactId>converter-gson</artifactId>
+      <version>2.6.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.squareup.retrofit2</groupId>
+      <artifactId>retrofit</artifactId>
+      <version>2.6.2</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.servicemix.bundles</groupId>
+      <artifactId>org.apache.servicemix.bundles.okhttp</artifactId>
+      <version>4.10.0_3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.servicemix.bundles</groupId>
+      <artifactId>org.apache.servicemix.bundles.okio</artifactId>
+      <version>3.2.0_2</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.28</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.tomakehurst</groupId>
+      <artifactId>wiremock-standalone</artifactId>
+      <version>2.23.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.awaitility</groupId>
+      <artifactId>awaitility</artifactId>
+      <version>4.2.0</version>
+      <scope>test</scope>
+    </dependency>
+
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+      <scope>test</scope>
+    </dependency>
+
+
+
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>openhab-release</id>
+      <url>https://openhab.jfrog.io/artifactory/libs-release</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>openhab-snapshot</id>
+      <url>https://openhab.jfrog.io/artifactory/libs-snapshot</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+  <profiles>
+    <profile>
+      <id>standalone</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.openhab.tools.sat</groupId>
+            <artifactId>sat-plugin</artifactId>
+            <configuration>
+              <checkstyleFilter>checkstyle-suppressions.xml</checkstyleFilter>
+              <checkstyleProperties>ruleset.properties</checkstyleProperties>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.commonjava.maven.plugins</groupId>
+            <artifactId>directory-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>directories</id>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+
+
+</project>

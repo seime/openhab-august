@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="august"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+	<channel-type id="doorState">
+		<item-type>Contact</item-type>
+		<label>Door status</label>
+		<category>FrontDoor</category>
+		<state readOnly="true" pattern="%s"/>
+		<autoUpdatePolicy>veto</autoUpdatePolicy>
+	</channel-type>
+	<channel-type id="lockState">
+		<item-type>Switch</item-type>
+		<label>Lock status</label>
+		<category>Lock</category>
+		<autoUpdatePolicy>veto</autoUpdatePolicy>
+	</channel-type>
+	<channel-type id="battery">
+		<item-type>Number</item-type>
+		<label>Battery</label>
+		<category>BatteryLevel</category>
+		<state readOnly="true" pattern="%d"/>
+	</channel-type>
+	<channel-type id="unlockedByUser">
+		<item-type>String</item-type>
+		<label>Last unlocked by user</label>
+		<category>Motion</category>
+		<state readOnly="true"/>
+	</channel-type>
+</thing:thing-descriptions>

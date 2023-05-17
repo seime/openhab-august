@@ -1,0 +1,16 @@
+{
+  "LockId1": {
+    "LockName": "LockName1",
+    "UserType": "superuser",
+    "macAddress": "00:00:00:00:00:00",
+    "HouseID": "House-UUID-1",
+    "HouseName": "HouseName1"
+  },
+  "LockId2": {
+    "LockName": "LockName2",
+    "UserType": "superuser",
+    "macAddress": "11:11:11:11:11:11",
+    "HouseID": "House-UUID-2",
+    "HouseName": "HouseName2"
+  }
+}

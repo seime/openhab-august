@@ -1,0 +1,25 @@
+{
+  "status": "kAugLockState_Locked",
+  "info": {
+    "action": "status",
+    "startTime": "2023-01-07T16:08:09.352Z",
+    "context": {
+      "transactionID": "0000000",
+      "startDate": "2023-01-07T16:08:09.347Z",
+      "retryCount": 2
+    },
+    "lockType": "lock_version_7",
+    "serialNumber": "LockSerial",
+    "rssi": -80,
+    "wlanRSSI": -57,
+    "wlanSNR": 38,
+    "duration": 8058,
+    "lockID": "LockId1",
+    "bridgeID": "BridggeId1",
+    "serial": "BridgeSerial"
+  },
+  "doorState": "kAugDoorState_Closed",
+  "retryCount": 2,
+  "totalTime": 12616,
+  "resultsFromOperationCache": false
+}

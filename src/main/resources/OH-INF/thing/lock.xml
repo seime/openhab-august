@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="august"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+	<thing-type id="lock">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="account"/>
+		</supported-bridge-type-refs>
+
+		<label>Door Lock</label>
+		<description>WiFi enabled door lock possibly via a WiFi Bridge</description>
+		<category>FrontDoor</category>
+
+		<channels>
+			<channel id="doorState" typeId="doorState"/>
+			<channel id="lockState" typeId="lockState"/>
+			<channel id="battery" typeId="battery"/>
+			<channel id="unlockedByUser" typeId="unlockedByUser"/>
+		</channels>
+
+
+		<representation-property>lockId</representation-property>
+		<config-description-ref uri="thing-type:august:lock"/>
+	</thing-type>
+</thing:thing-descriptions>

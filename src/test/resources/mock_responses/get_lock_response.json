@@ -1,0 +1,161 @@
+{
+  "LockName": "LockName",
+  "Type": 7,
+  "Created": "2021-08-23T17:50:54.169Z",
+  "Updated": "2021-08-23T17:50:54.169Z",
+  "LockID": "LockId1",
+  "HouseID": "House-UUID-2",
+  "HouseName": "HouseName1",
+  "Calibrated": false,
+  "timeZone": "Europe/Oslo",
+  "battery": 0.47750721243210137,
+  "batteryInfo": {
+    "level": 0.47750721243210137,
+    "warningState": "lock_state_battery_warning_none",
+    "infoUpdatedDate": "2023-01-07T15:54:32.405Z",
+    "lastChangeDate": "2022-07-24T12:02:04.000Z",
+    "lastChangeVoltage": 6187
+  },
+  "doorStateOpenTimeout": 180,
+  "supportsEntryCodes": true,
+  "remoteOperateSecret": "remoteOperateSecret",
+  "skuNumber": "SkuNumber",
+  "macAddress": "00:00:00:00:00:00",
+  "SerialNumber": "SerialNumber1",
+  "LockStatus": {
+    "status": "locked",
+    "dateTime": "2023-01-07T15:54:31.935Z",
+    "isLockStatusChanged": true,
+    "valid": true,
+    "doorState": "closed"
+  },
+  "currentFirmwareVersion": "3.2.1-3.3.0-2.0.8",
+  "homeKitEnabled": false,
+  "zWaveEnabled": false,
+  "isGalileo": false,
+  "Bridge": {
+    "_id": "BridgeId1",
+    "mfgBridgeID": "BridgeModel1",
+    "deviceModel": "august-connect",
+    "firmwareVersion": "2.3.1",
+    "operative": true,
+    "status": {
+      "current": "online",
+      "lastOffline": "2022-12-31T15:41:03.201Z",
+      "updated": "2023-01-07T09:57:52.148Z",
+      "lastOnline": "2023-01-07T09:57:52.148Z"
+    },
+    "locks": [
+      {
+        "_id": "BridgeLockId1",
+        "macAddress": "00:00:00:00:00:00",
+        "LockID": "LockId1"
+      }
+    ],
+    "hyperBridge": true
+  },
+  "OfflineKeys": {
+    "created": [
+      {
+        "created": "2023-01-03T19:03:30.131Z",
+        "key": "lkjløkj",
+        "slot": 1,
+        "UserID": "kjlkj"
+      }
+    ],
+    "loaded": [],
+    "deleted": [
+      {
+        "created": "2022-10-16T17:44:08.054Z",
+        "slot": 2,
+        "UserID": "UserId",
+        "loaded": "2022-12-09T15:48:51.863Z"
+      }
+    ]
+  },
+  "parametersToSet": {},
+  "users": {
+    "UserId1": {
+      "UserType": "superuser",
+      "FirstName": "FirstName",
+      "LastName": "LastName",
+      "notification": "both",
+      "identifiers": [
+        "phone:+4711111111",
+        "email:email2@address.com"
+      ]
+    },
+    "UserId2": {
+      "UserType": "superuser",
+      "FirstName": "FirstName",
+      "LastName": "LastName",
+      "identifiers": [
+        "phone:+4700000000",
+        "email:email@address.com"
+      ]
+    }
+  },
+  "pubsubChannel": "PubsubChannelUUID",
+  "ruleHash": {},
+  "cameras": [],
+  "geofenceLimits": {
+    "ios": {
+      "debounceInterval": 90,
+      "gpsAccuracyMultiplier": 2.5,
+      "maximumGeofence": 5000,
+      "minimumGeofence": 100,
+      "minGPSAccuracyRequired": 80
+    }
+  },
+  "accessSchedulesAllowed": true,
+  "pins": {
+    "created": [],
+    "loaded": [
+      {
+        "_id": "id",
+        "type": "pin",
+        "lockID": "LockId",
+        "userID": "UserId1",
+        "state": "loaded",
+        "pin": "000000",
+        "slot": 6,
+        "accessType": "recurring",
+        "callingUserID": "AdminUserId",
+        "accessTimes": "VCAL",
+        "accessRecurrence": "VCAL",
+        "schedule": "VCALENTRY",
+        "createdAt": "2022-10-07T08:20:18.890Z",
+        "updatedAt": "2022-10-07T08:20:20.454Z",
+        "loadedDate": "2022-10-07T08:20:20.454Z",
+        "firstName": "FirstName",
+        "lastName": "LastName",
+        "unverified": true
+      },
+      {
+        "_id": "id",
+        "type": "pin",
+        "lockID": "LockId",
+        "userID": "UserId2",
+        "state": "loaded",
+        "pin": "000000",
+        "slot": 6,
+        "accessType": "recurring",
+        "callingUserID": "AdminUserId",
+        "accessTimes": "VCAL",
+        "accessRecurrence": "VCAL",
+        "schedule": "VCALENTRY",
+        "createdAt": "2022-10-07T08:20:18.890Z",
+        "updatedAt": "2022-10-07T08:20:20.454Z",
+        "loadedDate": "2022-10-07T08:20:20.454Z",
+        "firstName": "FirstName2",
+        "lastName": "LastName2",
+        "unverified": true
+      }
+    ],
+    "disabled": [],
+    "disabling": [],
+    "enabling": [],
+    "deleting": [],
+    "updating": []
+  }
+}

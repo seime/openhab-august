@@ -1,0 +1,21 @@
+{
+  "remoteEvent": 1,
+  "status": "kAugLockState_Unlocking",
+  "info": {
+    "action": "unlock",
+    "startTime": "2023-02-05T08:15:10.015Z",
+    "context": {
+      "transactionID": "TxID",
+      "startDate": "2023-02-05T08:15:10.010Z",
+      "retryCount": 1
+    },
+    "lockType": "lock_version_7",
+    "serialNumber": "Serial",
+    "rssi": -76,
+    "wlanRSSI": -48,
+    "wlanSNR": 50,
+    "duration": 1385,
+    "lockID": "LockID",
+    "bridgeID": "bridgeID"
+  }
+}

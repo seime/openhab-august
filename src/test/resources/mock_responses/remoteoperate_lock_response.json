@@ -1,0 +1,26 @@
+{
+  "status": "kAugLockState_Unlocked",
+  "info": {
+    "action": "unlock",
+    "startTime": "2023-01-08T05:51:43.247Z",
+    "context": {
+      "transactionID": "WiGJ4sHhnk",
+      "startDate": "2023-01-08T05:51:43.244Z",
+      "retryCount": 1
+    },
+    "lockType": "lock_version_7",
+    "serialNumber": "L7I0000HAF",
+    "rssi": -80,
+    "wlanRSSI": -55,
+    "wlanSNR": 44,
+    "duration": 3750,
+    "lockID": "LockID",
+    "bridgeID": "BridgeID",
+    "lockStatusChanged": false,
+    "serial": "C5W0X005ZX"
+  },
+  "doorState": "kAugDoorState_Closed",
+  "retryCount": 1,
+  "totalTime": 3765,
+  "resultsFromOperationCache": false
+}
