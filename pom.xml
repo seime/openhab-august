@@ -11,8 +11,9 @@
   </parent>
 
   <artifactId>org.openhab.binding.august</artifactId>
+  <version>3.4.4-SNAPSHOT</version>
 
-  <name>openHAB Add-ons :: Bundles :: August Binding</name>
+  <name>Seime Add-ons :: Bundles :: August Binding</name>
 
   <properties>
     <bnd.importpackage>
