@@ -64,6 +64,7 @@ public class PubNubMessageSubscriber {
             PNConfiguration pnConfiguration = new PNConfiguration(userId);
             pnConfiguration.setSubscribeKey(SUBSCRIBE_KEY);
             pnConfiguration.setReconnectionPolicy(PNReconnectionPolicy.EXPONENTIAL);
+            pnConfiguration.setMaximumReconnectionRetries(100);
             pnConfiguration.setLogVerbosity(PNLogVerbosity.BODY);
 
             pub = new PubNub(pnConfiguration);
@@ -122,6 +123,7 @@ public class PubNubMessageSubscriber {
                             // /docs/android-java/api-reference-configuration#configuration_basic_usage
                             if (status.isError()) {
                                 // There was an error with the heartbeat operation, handle here
+                                pub.reconnect();
                             } else {
                                 // heartbeat operation was successful
                             }
