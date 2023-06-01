@@ -41,6 +41,7 @@ import org.openhab.binding.august.internal.GsonFactory;
 import org.openhab.binding.august.internal.comm.PubNubListener;
 import org.openhab.binding.august.internal.comm.PubNubMessageSubscriber;
 import org.openhab.binding.august.internal.comm.RestApiClient;
+import org.openhab.binding.august.internal.config.EcoSystem;
 import org.openhab.binding.august.internal.config.LockConfiguration;
 import org.openhab.binding.august.internal.dto.RemoteOperateLockRequest;
 import org.openhab.core.config.core.Configuration;
@@ -116,7 +117,7 @@ class AugustLockHandlerTest implements PubNubListener {
         restApiClient.setAccessToken("ACCESSTOKEN");
 
         messageSubscriber = new PubNubMessageSubscriber();
-        messageSubscriber.init("null", this);
+        messageSubscriber.init("null", this, EcoSystem.AUGUST);
 
         lockConfiguration = new LockConfiguration();
         lockConfiguration.lockId = "LockId1";

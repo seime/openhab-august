@@ -233,7 +233,7 @@ public class AugustAccountHandler extends BaseBridgeHandler implements AccessTok
     private void loginComplete() throws AugustException {
         boolean loginOK = obtainNewSession();
         if (loginOK) {
-            messageSubscriber.init(storage.get(STORAGE_KEY_USERID), this);
+            messageSubscriber.init(storage.get(STORAGE_KEY_USERID), this, config.ecoSystem);
             doPoll();
             statusFuture = Optional.of(scheduler.scheduleWithFixedDelay(this::doPoll, config.refreshIntervalSeconds,
                     config.refreshIntervalSeconds, TimeUnit.SECONDS));

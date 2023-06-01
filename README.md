@@ -76,7 +76,7 @@ status. This may take 10-20 seconds to complete, but you get the latest and most
 august.things:
 
 ```
-Bridge august:account:accountName "Yale Access account" [ email="XXX@XXX.COM", phone="+4712345678", password="XXXXXXX", refreshInterval="3600", validationCode="REPLACE" ] {
+Bridge august:account:accountName "Yale Access account" [ email="XXX@XXX.COM", phone="+4712345678", password="XXXXXXX", refreshInterval="3600", validationCode="REPLACE", ecoSystem="YALE_HOME"] {
   Thing lock frontdoor "Front door" [ lockId="344KJLK32KJ234LKJ234JLKJK34" ]
 }
 ```

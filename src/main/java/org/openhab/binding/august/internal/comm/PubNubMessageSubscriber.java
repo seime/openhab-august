@@ -18,6 +18,7 @@ import java.util.Locale;
 import java.util.Set;
 
 import org.jetbrains.annotations.NotNull;
+import org.openhab.binding.august.internal.config.EcoSystem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,7 +47,6 @@ import com.pubnub.api.models.consumer.pubsub.message_actions.PNMessageActionResu
  */
 public class PubNubMessageSubscriber {
 
-    private static final String SUBSCRIBE_KEY = "sub-c-1030e062-0ebe-11e5-a5c2-0619f8945a4f";
     private static final Logger logger = LoggerFactory.getLogger(PubNubMessageSubscriber.class);
 
     private final Set<String> channels = new HashSet<>();
@@ -57,12 +57,13 @@ public class PubNubMessageSubscriber {
 
     SubscribeCallback callback = null;
 
-    public void init(String userIdString, PubNubListener messageListener) throws PubNubMessageException {
+    public void init(String userIdString, PubNubListener messageListener, EcoSystem ecoSystem)
+            throws PubNubMessageException {
 
         try {
             final UserId userId = new UserId("fn-" + userIdString.toUpperCase(Locale.ROOT));
             PNConfiguration pnConfiguration = new PNConfiguration(userId);
-            pnConfiguration.setSubscribeKey(SUBSCRIBE_KEY);
+            pnConfiguration.setSubscribeKey(ecoSystem.getPubNubSubscribeKey());
             pnConfiguration.setReconnectionPolicy(PNReconnectionPolicy.EXPONENTIAL);
             pnConfiguration.setMaximumReconnectionRetries(100);
             pnConfiguration.setLogVerbosity(PNLogVerbosity.BODY);

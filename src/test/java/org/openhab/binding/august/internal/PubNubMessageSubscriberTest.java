@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.openhab.binding.august.internal.comm.PubNubListener;
 import org.openhab.binding.august.internal.comm.PubNubMessageException;
 import org.openhab.binding.august.internal.comm.PubNubMessageSubscriber;
+import org.openhab.binding.august.internal.config.EcoSystem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +43,7 @@ class PubNubMessageSubscriberTest implements PubNubListener {
     void testSubscribe() throws PubNubMessageException {
 
         PubNubMessageSubscriber subscriber = new PubNubMessageSubscriber();
-        subscriber.init(userId, this);
+        subscriber.init(userId, this, EcoSystem.AUGUST);
         subscriber.addListener(channelName);
         // Intentionally duplicate
         subscriber.addListener(channelName);
