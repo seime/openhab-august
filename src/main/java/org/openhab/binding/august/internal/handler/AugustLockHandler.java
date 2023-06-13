@@ -84,6 +84,7 @@ public class AugustLockHandler extends BaseThingHandler implements PubNubListene
 
         addKnownLockType("1002", "Yale Doorman V2N");
         addKnownLockType("7", "Yale Doorman L3");
+        addKnownLockType("12", "Yale Unity Security Screen");
         lockTypeToLockName.put("", "(Not reported)");
     }
 
