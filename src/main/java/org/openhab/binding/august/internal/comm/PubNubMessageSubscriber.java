@@ -99,7 +99,6 @@ public class PubNubMessageSubscriber {
                                     // Usually an issue with the internet connection.
                                     // This is an error: handle appropriately.
                                     status.getAffectedChannels().forEach(e -> messageListener.onPubNubDisconnect(e));
-                                    pub.reconnect();
                                     break;
                                 case PNAccessDeniedCategory:
                                     // PAM does not allow this client to subscribe to this
