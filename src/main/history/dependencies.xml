@@ -4,7 +4,10 @@
         <feature>openhab-runtime-base</feature>
         <feature>wrap</feature>
         <bundle>mvn:com.fasterxml.jackson.core/jackson-annotations/2.14.2</bundle>
+        <bundle>mvn:com.fasterxml.jackson.core/jackson-annotations/2.14.2</bundle>
         <bundle>mvn:com.fasterxml.jackson.core/jackson-core/2.14.2</bundle>
+        <bundle>mvn:com.fasterxml.jackson.core/jackson-core/2.14.2</bundle>
+        <bundle>mvn:com.fasterxml.jackson.core/jackson-databind/2.14.2</bundle>
         <bundle>mvn:com.fasterxml.jackson.core/jackson-databind/2.14.2</bundle>
         <bundle>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-cbor/2.14.2</bundle>
         <bundle>mvn:com.google.code.gson/gson/2.9.0</bundle>
