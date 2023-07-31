@@ -412,43 +412,49 @@ public class AugustLockHandler extends BaseThingHandler implements PubNubListene
         }
     }
 
-    private State parseLockState(String lockStateString) {
-        State lockState = UnDefType.UNDEF;
-        switch (lockStateString) {
+    private State parseLockState(String stateString) {
+        State state = UnDefType.UNDEF;
+        switch (stateString) {
             case "locked":
             case "kAugLockState_Locked":
-                lockState = OnOffType.ON;
+                state = OnOffType.ON;
                 break;
             case "unlocked":
             case "kAugLockState_Unlocked":
-                lockState = OnOffType.OFF;
+                state = OnOffType.OFF;
+                break;
+            case "unknown":
+                state = UnDefType.UNDEF;
                 break;
             default:
-                logger.warn("Unexpected lockState from async message {}", lockStateString);
+                logger.warn("Unexpected lockState '{}' returned, setting to UNDEF", stateString);
 
         }
-        return lockState;
+        return state;
     }
 
-    private State parseDoorState(String doorStateString) {
-        State doorState = UnDefType.UNDEF;
-        if (doorStateString != null) {
-            switch (doorStateString) {
+    private State parseDoorState(String stateString) {
+        State state = UnDefType.UNDEF;
+        if (stateString != null) {
+            switch (stateString) {
                 case "open":
                 case "kAugDoorState_Open":
                 case "kAugLockDoorState_Open":
-                    doorState = OpenClosedType.OPEN;
+                    state = OpenClosedType.OPEN;
                     break;
                 case "closed":
                 case "kAugDoorState_Closed":
                 case "kAugLockDoorState_Closed":
-                    doorState = OpenClosedType.CLOSED;
+                    state = OpenClosedType.CLOSED;
+                    break;
+                case "unknown":
+                    state = UnDefType.UNDEF;
                     break;
                 default:
-                    logger.warn("Unexpected doorState from async message {}", doorStateString);
+                    logger.warn("Unexpected doorState '{}' returned, setting to UNDEF", stateString);
             }
         }
-        return doorState;
+        return state;
     }
 
     private State translateUserIdToName(String callingUserID) {
