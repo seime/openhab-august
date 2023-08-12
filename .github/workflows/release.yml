@@ -26,12 +26,12 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/.m2/repository
-        key: ${{ runner.java }}-maven-${{ hashFiles('**/pom.xml') }}
+        key: ${{ runner.java }}-maven-${{ hashFiles('**/pom.xml') }}-1
         restore-keys: |
           ${{ runner.java }}-maven-
-
+          ${{ runner.java }}-maven-${{ hashFiles('**/pom.xml') }}-1
     - name: Downgrade version
-      run: mvn versions:set -DnewVersion=3.4.4-SNAPSHOT
+      run: mvn versions:set -DnewVersion=3.4.5-SNAPSHOT
     - name: Downgrade parent version
       run: mvn versions:update-parent -DskipResolution=true -DparentVersion=3.4.4
     - name: Build
@@ -69,7 +69,7 @@ jobs:
         key: ${{ runner.java }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.java }}-maven-
-
+          ${{ runner.java }}-maven-${{ hashFiles('**/pom.xml') }}
     - name: Build
       run: mvn -P 'standalone' --batch-mode -DskipChecks -Doh.java.version=17 clean verify
 
