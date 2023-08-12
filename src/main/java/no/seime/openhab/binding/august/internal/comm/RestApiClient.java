@@ -45,7 +45,7 @@ import no.seime.openhab.binding.august.internal.logging.RequestLogger;
 public class RestApiClient {
     public static final String HEADER_ACCESS_TOKEN = "x-august-access-token";
     public static final String HEADER_CONTENT_TYPE_APPLICATION_JSON = "application/json";
-    private static final String API_KEY = "79fd0eb6-381d-4adf-95a0-47721289d1d9";
+    private static final String API_KEY = "d9984f29-07a6-816e-e1c9-44ec9d1be431";
 
     private HttpClient httpClient;
 
