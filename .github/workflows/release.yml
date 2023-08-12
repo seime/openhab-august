@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         java: [ '11' ]
-        maven: [ '3.8.4' ]
+        maven: [ '3.6.3' ]
         os: [ 'ubuntu-20.04' ]
     name: Build OH3 (Java ${{ matrix.java }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
