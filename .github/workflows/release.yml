@@ -26,7 +26,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/.m2/repository
-        key: ${{ runner.java }}-maven
+        key: ${{ runner.java }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.java }}-maven-
           ${{ runner.java }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -66,7 +66,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/.m2/repository
-        key: ${{ runner.java }}-maven-
+        key: ${{ runner.java }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.java }}-maven-
           ${{ runner.java }}-maven-${{ hashFiles('**/pom.xml') }}
