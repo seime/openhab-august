@@ -244,6 +244,17 @@
           <version>2.14.2</version>
         </dependency>
       </dependencies>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.karaf.tooling</groupId>
+              <artifactId>karaf-maven-plugin</artifactId>
+              <version>4.3.9</version>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
     </profile>
 
 
