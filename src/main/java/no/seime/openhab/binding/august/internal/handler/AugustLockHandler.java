@@ -420,6 +420,7 @@ public class AugustLockHandler extends BaseThingHandler implements PubNubListene
             case "kAugLockState_Locked":
                 state = OnOffType.ON;
                 break;
+            case "unlatched":
             case "unlocked":
             case "kAugLockState_Unlocked":
                 state = OnOffType.OFF;
