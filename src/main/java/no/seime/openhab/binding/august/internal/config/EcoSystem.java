@@ -19,16 +19,21 @@ package no.seime.openhab.binding.august.internal.config;
  * @author Arne Seime - Initial contribution
  */
 public enum EcoSystem {
-    AUGUST("https://api-production.august.com", "sub-c-1030e062-0ebe-11e5-a5c2-0619f8945a4f"),
-    YALE_HOME("https://api.aaecosystem.com", "sub-c-c9c38d4d-5796-46c9-9262-af20cf6a1d42");
+    AUGUST("https://api-production.august.com", "sub-c-1030e062-0ebe-11e5-a5c2-0619f8945a4f",
+            "pub-c-567d7f2d-270a-438a-a785-f0af12ad8312"),
+    YALE_HOME("https://api.aaecosystem.com", "sub-c-c9c38d4d-5796-46c9-9262-af20cf6a1d42",
+            "pub-c-353e8881-cf58-4b26-9baf-96f296de0677");
 
     private final String url;
 
     private final String pubNubSubscribeKey;
 
-    EcoSystem(String url, String pubNubSubscribeKey) {
+    private final String pubNubPublishKey;
+
+    EcoSystem(String url, String pubNubSubscribeKey, String pubNubPublishKey) {
         this.url = url;
         this.pubNubSubscribeKey = pubNubSubscribeKey;
+        this.pubNubPublishKey = pubNubPublishKey;
     }
 
     public String getUrl() {
@@ -37,5 +42,9 @@ public enum EcoSystem {
 
     public String getPubNubSubscribeKey() {
         return pubNubSubscribeKey;
+    }
+
+    public String getPubNubPublishKey() {
+        return pubNubPublishKey;
     }
 }

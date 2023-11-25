@@ -62,9 +62,10 @@ public class PubNubMessageSubscriber {
             throws PubNubMessageException {
 
         try {
-            final UserId userId = new UserId("fn-" + userIdString.toUpperCase(Locale.ROOT));
+            final UserId userId = new UserId("pn-" + userIdString.toUpperCase(Locale.ROOT));
             PNConfiguration pnConfiguration = new PNConfiguration(userId);
             pnConfiguration.setSubscribeKey(ecoSystem.getPubNubSubscribeKey());
+            pnConfiguration.setPublishKey(ecoSystem.getPubNubPublishKey());
             pnConfiguration.setReconnectionPolicy(PNReconnectionPolicy.EXPONENTIAL);
             pnConfiguration.setMaximumReconnectionRetries(100);
             pnConfiguration.setLogVerbosity(PNLogVerbosity.BODY);
