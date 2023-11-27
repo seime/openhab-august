@@ -12,9 +12,6 @@
  */
 package no.seime.openhab.binding.august.internal.dto;
 
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
-
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -33,7 +30,7 @@ public class GetSessionRequest implements AbstractRequest {
 
     public GetSessionRequest(String loginId, String password, String installId) {
         this.loginId = "email:" + loginId;
-        this.password = URLEncoder.encode(password, Charset.defaultCharset());
+        this.password = password;
         this.installId = installId;
     }
 
