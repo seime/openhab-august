@@ -157,5 +157,14 @@
     "enabling": [],
     "deleting": [],
     "updating": []
+  },
+  "keypad": {
+    "_id": "KEYPAD_ID",
+    "serialNumber": "K2IC007",
+    "lockID": "LockId",
+    "currentFirmwareVersion": "2.27.0",
+    "battery": null,
+    "batteryLevel": "Full",
+    "batteryRaw": 189
   }
 }

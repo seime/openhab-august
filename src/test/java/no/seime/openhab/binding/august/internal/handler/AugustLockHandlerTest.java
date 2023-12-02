@@ -156,6 +156,8 @@ class AugustLockHandlerTest implements PubNubListener {
 
         verify(thingHandlerCallback).stateUpdated(new ChannelUID(thing.getUID(), BindingConstants.CHANNEL_BATTERY),
                 new QuantityType<>(47.75072124321014, Units.PERCENT));
+        verify(thingHandlerCallback).stateUpdated(
+                new ChannelUID(thing.getUID(), BindingConstants.CHANNEL_BATTERY_KEYPAD), new StringType("Full"));
         verify(thingHandlerCallback).stateUpdated(new ChannelUID(thing.getUID(), BindingConstants.CHANNEL_LOCK_STATE),
                 OnOffType.ON);
         verify(thingHandlerCallback).stateUpdated(new ChannelUID(thing.getUID(), BindingConstants.CHANNEL_DOOR_STATE),
@@ -320,6 +322,8 @@ class AugustLockHandlerTest implements PubNubListener {
                 ChannelBuilder.create(new ChannelUID(lockThing.getUID(), BindingConstants.CHANNEL_DOOR_STATE)).build());
         lockThing.addChannel(
                 ChannelBuilder.create(new ChannelUID(lockThing.getUID(), BindingConstants.CHANNEL_BATTERY)).build());
+        lockThing.addChannel(ChannelBuilder
+                .create(new ChannelUID(lockThing.getUID(), BindingConstants.CHANNEL_BATTERY_KEYPAD)).build());
         lockThing.addChannel(ChannelBuilder
                 .create(new ChannelUID(lockThing.getUID(), BindingConstants.CHANNEL_UNLOCKED_BY_USER)).build());
         lockThing.setConfiguration(configuration);

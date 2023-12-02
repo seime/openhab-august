@@ -189,6 +189,12 @@ public class AugustLockHandler extends BaseThingHandler implements PubNubListene
         properties.put("lockSerialNumber", lockResponse.serialNumber);
         properties.put("lockType", getLockName("" + lockResponse.type));
 
+        if (lockResponse.keypad != null) {
+            properties.put("keypadFirmwareVersion", lockResponse.keypad.firmwareVersion);
+            properties.put("keypadSerialNumber", lockResponse.keypad.serialNumber);
+            properties.put("keypadId", lockResponse.keypad.id);
+        }
+
         updateThing(editThing().withProperties(properties).build());
     }
 
@@ -221,6 +227,9 @@ public class AugustLockHandler extends BaseThingHandler implements PubNubListene
         switch (channelUID.getId()) {
             case BindingConstants.CHANNEL_BATTERY:
                 handleBatteryCommand(channelUID, command);
+                break;
+            case BindingConstants.CHANNEL_BATTERY_KEYPAD:
+                handleBatteryKeypadCommand(channelUID, command);
                 break;
             case BindingConstants.CHANNEL_LOCK_STATE:
                 handleLockStateCommand(channelUID, command);
@@ -273,6 +282,18 @@ public class AugustLockHandler extends BaseThingHandler implements PubNubListene
     private void handleBatteryCommand(ChannelUID channelUID, Command command) {
         if (command instanceof RefreshType || command == null) {
             updateState(channelUID, new QuantityType<>(lock.batteryPercentage * 100, Units.PERCENT));
+        } else {
+            logger.debug(ERROR_MESSAGE_UNSUPPORTED_COMMAND, command, channelUID);
+        }
+    }
+
+    private void handleBatteryKeypadCommand(ChannelUID channelUID, Command command) {
+        if (command instanceof RefreshType || command == null) {
+            if (lock.keypad != null) {
+                updateState(channelUID, new StringType(lock.keypad.batteryLevel));
+            } else {
+                updateState(channelUID, UnDefType.UNDEF);
+            }
         } else {
             logger.debug(ERROR_MESSAGE_UNSUPPORTED_COMMAND, command, channelUID);
         }

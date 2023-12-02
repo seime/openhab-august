@@ -21,41 +21,19 @@ import com.google.gson.annotations.SerializedName;
  * @author Arne Seime - Initial contribution.
  */
 
-public class GetLockResponse {
+public class KeypadDTO {
 
-    @SerializedName("LockName")
-    public String lockName;
+    @SerializedName("_id")
+    public String id;
 
     @SerializedName("LockID")
     public String lockId;
 
-    @SerializedName("Type")
-    public Integer type;
+    @SerializedName("batteryLevel")
+    public String batteryLevel;
 
-    @SerializedName("HouseName")
-    public String houseName;
-
-    @SerializedName("Calibrated")
-    public Boolean calibrated;
-
-    @SerializedName("battery")
-    public Double batteryPercentage;
-
-    public String skuNumber;
-    public String macAddress;
-
-    @SerializedName("SerialNumber")
     public String serialNumber;
 
-    @SerializedName("LockStatus")
-    public LockStatusDTO lockStatus;
-
-    public String currentFirmwareVersion;
-
-    public String pubsubChannel;
-
-    @SerializedName("pins")
-    public UserListDTO userList;
-
-    public KeypadDTO keypad;
+    @SerializedName("currentFirmwareVersion")
+    public String firmwareVersion;
 }

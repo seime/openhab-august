@@ -61,6 +61,7 @@ in [lock details response](src/test/resources/get_lock_response.json) and report
 | battery        | R          | Number:Dimensionless | Remaining battery percentage                                                                          |
 | changedByUser  | R          | String               | User last locking/unlocking the door. `Manual` if door knob used                                      |
 | unlockedByUser | R          | String               | User last unlocking the door. `Manual` if door knob used                                              |
+| batteryKeypad  | R          | String               | Remaining battery level of keypad (if installed)                                                      |
 
 ## Requesting latest status from lock
 

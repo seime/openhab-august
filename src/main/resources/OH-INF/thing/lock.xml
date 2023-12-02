@@ -17,6 +17,7 @@
 			<channel id="doorState" typeId="doorState"/>
 			<channel id="lockState" typeId="lockState"/>
 			<channel id="battery" typeId="battery"/>
+			<channel id="batteryKeypad" typeId="batteryLevelKeypad"/>
 			<channel id="unlockedByUser" typeId="unlockedByUser"/>
 		</channels>
 

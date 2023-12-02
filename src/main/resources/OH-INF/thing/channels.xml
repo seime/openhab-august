@@ -29,4 +29,10 @@
 		<category>Motion</category>
 		<state readOnly="true"/>
 	</channel-type>
+	<channel-type id="batteryLevelKeypad">
+		<item-type>String</item-type>
+		<label>Battery level keypad (if installed)</label>
+		<category>BatteryLevel</category>
+		<state readOnly="true"/>
+	</channel-type>
 </thing:thing-descriptions>
