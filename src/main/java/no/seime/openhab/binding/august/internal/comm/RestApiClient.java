@@ -20,6 +20,7 @@ import java.util.concurrent.TimeoutException;
 
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.jetty.client.HttpClient;
+import org.eclipse.jetty.client.HttpResponseException;
 import org.eclipse.jetty.client.api.ContentResponse;
 import org.eclipse.jetty.client.api.Request;
 import org.eclipse.jetty.client.util.BytesContentProvider;
@@ -125,11 +126,12 @@ public class RestApiClient {
         try {
             final ContentResponse contentResponse = httpRequest.send();
             String newAccessToken = contentResponse.getHeaders().get(HEADER_ACCESS_TOKEN);
-            if (accessToken == null || !accessToken.equals(newAccessToken)) {
-                listener.onAccessTokenUpdated(newAccessToken);
+            if (newAccessToken != null) {
+                if (accessToken == null || !accessToken.equals(newAccessToken)) {
+                    listener.onAccessTokenUpdated(newAccessToken);
+                }
+                accessToken = newAccessToken;
             }
-            accessToken = newAccessToken;
-
             final String responseJson = contentResponse.getContentAsString();
             if (contentResponse.getStatus() == HttpStatus.OK_200) {
                 final JsonObject o = JsonParser.parseString(responseJson).getAsJsonObject();
@@ -160,6 +162,10 @@ public class RestApiClient {
                 throw new RestCommunicationException("The operation failed because the bridge (connect) is offline.");
             } else if (contentResponse.getStatus() == HttpStatus.TOO_MANY_REQUESTS_429) {
                 throw new RestCommunicationException("Too many requests, reduce polling time");
+            } else if (contentResponse.getStatus() == HttpStatus.BAD_GATEWAY_502) {
+                throw new RestCommunicationException("Gateway trouble at CloudFlare");
+            } else if (contentResponse.getStatus() == HttpStatus.GATEWAY_TIMEOUT_504) {
+                throw new RestCommunicationException("Gateway timeout. Yale servers not responding");
             } else {
                 throw new RestCommunicationException("Error sending request to server. Server responded with "
                         + contentResponse.getStatus() + " and payload " + responseJson);
