@@ -34,10 +34,10 @@ class PubNubMessageSubscriberTest implements PubNubListener {
 
     private static final Logger logger = LoggerFactory.getLogger(PubNubMessageSubscriberTest.class);
 
-    private String userId = "INSERT_USERID_FROM_GET_SESSION_RESPONSE";
-    private String channelName = "INSERT_PUBSUBCHANNEL_FROM_LOCKS_RESPONSE";
+    private final String userId = "INSERT_USERID_FROM_GET_SESSION_RESPONSE";
+    private final String channelName = "INSERT_PUBSUBCHANNEL_FROM_LOCKS_RESPONSE";
 
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
 
     @Test
     // @Disabled("Needs userId and channelName populated - for manual testing/analyzing responses from PubNub")

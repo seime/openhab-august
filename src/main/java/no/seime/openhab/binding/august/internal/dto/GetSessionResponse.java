@@ -29,4 +29,6 @@ public class GetSessionResponse {
 
     // UserId logged in - used for async message subscription
     public String userId;
+
+    public String email[];
 }

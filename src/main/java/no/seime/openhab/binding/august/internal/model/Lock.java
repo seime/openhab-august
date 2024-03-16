@@ -21,9 +21,9 @@ import no.seime.openhab.binding.august.internal.dto.LockDTO;
  */
 public class Lock {
 
-    private String houseName;
+    private final String houseName;
 
-    private String lockName;
+    private final String lockName;
 
     public Lock(LockDTO dto) {
         this.houseName = dto.houseName;

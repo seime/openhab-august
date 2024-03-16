@@ -61,10 +61,10 @@ public class AugustThingHandlerFactory extends BaseThingHandlerFactory {
     @NonNullByDefault({})
     private final HttpClient httpClient;
     @NonNullByDefault({})
-    private StorageService storageService;
-    private Map<ThingUID, ServiceRegistration<?>> discoveryServiceRegs = new HashMap<>();
+    private final StorageService storageService;
+    private final Map<ThingUID, ServiceRegistration<?>> discoveryServiceRegs = new HashMap<>();
 
-    private Gson gson = GsonFactory.create();
+    private final Gson gson = GsonFactory.create();
 
     @Activate
     public AugustThingHandlerFactory(@Reference HttpClientFactory httpClientFactory,

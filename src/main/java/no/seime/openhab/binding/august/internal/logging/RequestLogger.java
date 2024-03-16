@@ -62,8 +62,8 @@ public final class RequestLogger {
                 }
             });
             final StringBuilder contentBuffer = new StringBuilder();
-            request.onRequestContent((theRequest, content) -> contentBuffer
-                    .append(getCharset(theRequest.getHeaders()).decode(content).toString()));
+            request.onRequestContent(
+                    (theRequest, content) -> contentBuffer.append(getCharset(theRequest.getHeaders()).decode(content)));
             request.onRequestSuccess(theRequest -> {
                 if (contentBuffer.length() > 0) {
                     group.append("\n");
@@ -89,7 +89,7 @@ public final class RequestLogger {
                 }
             });
             request.onResponseContent((theResponse, content) -> contentBuffer
-                    .append(getCharset(theResponse.getHeaders()).decode(content).toString()));
+                    .append(getCharset(theResponse.getHeaders()).decode(content)));
             request.onResponseSuccess(theResponse -> {
                 if (contentBuffer.length() > 0) {
                     group.append("\n");

@@ -24,7 +24,6 @@ import static org.mockito.Mockito.when;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Map;
 
 import org.eclipse.jetty.client.HttpClient;
@@ -70,7 +69,7 @@ class AugustAccountHandlerTest {
 
     private RestApiClient restApiClient;
 
-    private Gson gson = GsonFactory.create();
+    private final Gson gson = GsonFactory.create();
 
     @BeforeEach
     public void setUp() throws Exception {
@@ -169,8 +168,7 @@ class AugustAccountHandlerTest {
         storage.put(AugustAccountHandler.STORAGE_KEY_AUTH_STATUS, AuthenticationStatus.VALIDATED.toString());
         storage.put(AugustAccountHandler.STORAGE_KEY_INSTALLID, "InstallID");
         storage.put(AugustAccountHandler.STORAGE_KEY_ACCESS_TOKEN, "ACCESSTOKEN");
-        storage.put(AugustAccountHandler.STORAGE_KEY_ACCESS_TOKEN_EXPIRY,
-                ZonedDateTime.now().plus(1, ChronoUnit.MONTHS).toString());
+        storage.put(AugustAccountHandler.STORAGE_KEY_ACCESS_TOKEN_EXPIRY, ZonedDateTime.now().plusMonths(1).toString());
         // storage.put(AugustAccountHandler.STORAGE_KEY_USERID, "UserId");
 
         preparePostNetworkResponse("/session", "/mock_responses/get_session_response.json", 200);
@@ -199,7 +197,7 @@ class AugustAccountHandlerTest {
         storage.put(AugustAccountHandler.STORAGE_KEY_INSTALLID, "InstallID");
         storage.put(AugustAccountHandler.STORAGE_KEY_ACCESS_TOKEN, "ACCESSTOKEN");
         storage.put(AugustAccountHandler.STORAGE_KEY_ACCESS_TOKEN_EXPIRY,
-                ZonedDateTime.now().minus(1, ChronoUnit.MONTHS).toString());
+                ZonedDateTime.now().minusMonths(1).toString());
         // storage.put(AugustAccountHandler.STORAGE_KEY_USERID, "UserId");
 
         preparePostNetworkResponse("/session", "/mock_responses/get_session_response.json", 200);

@@ -46,7 +46,7 @@ public class RemoteOperateLockRequest implements AbstractRequest {
         LOCK("lock"),
         UNLOCK("unlock");
 
-        private String urlWord;
+        private final String urlWord;
 
         Operation(String urlWord) {
             this.urlWord = urlWord;

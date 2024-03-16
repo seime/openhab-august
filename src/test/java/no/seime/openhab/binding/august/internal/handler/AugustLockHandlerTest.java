@@ -89,7 +89,7 @@ class AugustLockHandlerTest implements PubNubListener {
     private PubNubMessageSubscriber messageSubscriber;
     private VolatileStorage<Object> storage;
 
-    private Gson gson = GsonFactory.create();
+    private final Gson gson = GsonFactory.create();
 
     private Thing thing;
 

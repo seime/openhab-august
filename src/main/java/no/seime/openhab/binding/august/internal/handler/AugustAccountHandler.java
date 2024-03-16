@@ -13,7 +13,6 @@
 package no.seime.openhab.binding.august.internal.handler;
 
 import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -41,21 +40,10 @@ import com.google.gson.reflect.TypeToken;
 
 import no.seime.openhab.binding.august.internal.AugustException;
 import no.seime.openhab.binding.august.internal.AuthenticationStatus;
-import no.seime.openhab.binding.august.internal.comm.AccessTokenUpdatedListener;
-import no.seime.openhab.binding.august.internal.comm.PubNubListener;
-import no.seime.openhab.binding.august.internal.comm.PubNubMessageSubscriber;
-import no.seime.openhab.binding.august.internal.comm.RestApiClient;
-import no.seime.openhab.binding.august.internal.comm.RestCommunicationException;
+import no.seime.openhab.binding.august.internal.comm.*;
 import no.seime.openhab.binding.august.internal.config.AccountConfiguration;
 import no.seime.openhab.binding.august.internal.config.EcoSystem;
-import no.seime.openhab.binding.august.internal.dto.GetLocksRequest;
-import no.seime.openhab.binding.august.internal.dto.GetLocksResponse;
-import no.seime.openhab.binding.august.internal.dto.GetSessionRequest;
-import no.seime.openhab.binding.august.internal.dto.GetSessionResponse;
-import no.seime.openhab.binding.august.internal.dto.GetValidationCodeRequest;
-import no.seime.openhab.binding.august.internal.dto.GetValidationCodeResponse;
-import no.seime.openhab.binding.august.internal.dto.ValidateCodeRequest;
-import no.seime.openhab.binding.august.internal.dto.ValidateCodeResponse;
+import no.seime.openhab.binding.august.internal.dto.*;
 import no.seime.openhab.binding.august.internal.model.Lock;
 
 /**
@@ -76,19 +64,19 @@ public class AugustAccountHandler extends BaseBridgeHandler implements AccessTok
     private Optional<ScheduledFuture<?>> statusFuture = Optional.empty();
     @Nullable
     private AccountConfiguration config;
-    private RestApiClient restApiClient;
+    private final RestApiClient restApiClient;
 
-    private PubNubMessageSubscriber messageSubscriber;
-    private Storage<String> storage;
+    private final PubNubMessageSubscriber messageSubscriber;
+    private final Storage<String> storage;
 
     private Map<String, Lock> locks = new HashMap<>();
-    private Map<String, PubNubListener> eventListeners = new ConcurrentHashMap<>();
+    private final Map<String, PubNubListener> eventListeners = new ConcurrentHashMap<>();
 
     public AugustAccountHandler(final Bridge bridge, RestApiClient restApiClient, Storage<String> storage) {
         super(bridge);
         this.restApiClient = restApiClient;
         this.storage = storage;
-        this.messageSubscriber = new PubNubMessageSubscriber();
+        messageSubscriber = new PubNubMessageSubscriber();
         restApiClient.init(bridge.getUID(), this);
     }
 
@@ -178,8 +166,7 @@ public class AugustAccountHandler extends BaseBridgeHandler implements AccessTok
     }
 
     private void handleAccountValidationRequested() throws AugustException {
-        if (null == config.validationCode || !StringUtils.isNumeric(config.validationCode)
-                || config.validationCode.length() != 6) {
+        if (!StringUtils.isNumeric(config.validationCode) || config.validationCode.length() != 6) {
             updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR, String
                     .format("Verification code is not a 6 digit number: %s. Enter code again", config.validationCode));
         } else {
@@ -204,7 +191,7 @@ public class AugustAccountHandler extends BaseBridgeHandler implements AccessTok
         String installationId = "openHAB-" + UUID.randomUUID();
         storage.put(STORAGE_KEY_INSTALLID, installationId);
 
-        boolean loginOK = obtainNewSession();
+        boolean loginOK = obtainNewSession(false);
         if (loginOK) {
 
             // Initiate 2 factor
@@ -232,7 +219,7 @@ public class AugustAccountHandler extends BaseBridgeHandler implements AccessTok
     }
 
     private void loginComplete() throws AugustException {
-        boolean loginOK = obtainNewSession();
+        boolean loginOK = obtainNewSession(true);
         if (loginOK) {
             messageSubscriber.init(storage.get(STORAGE_KEY_USERID), this, config.ecoSystem);
             doPoll();
@@ -248,19 +235,22 @@ public class AugustAccountHandler extends BaseBridgeHandler implements AccessTok
                 "Check email / phone / password / validation code");
     }
 
-    private boolean obtainNewSession() throws AugustException {
-        GetSessionRequest getSessionRequestRefresh = new GetSessionRequest(config.email, config.password,
+    private boolean obtainNewSession(boolean requireUserId) throws AugustException {
+        GetSessionRequest req = new GetSessionRequest(config.email, config.password,
                 storage.get(STORAGE_KEY_INSTALLID));
-        GetSessionResponse getSessionResponseRefresh = restApiClient.sendRequest(getSessionRequestRefresh,
-                new TypeToken<GetSessionResponse>() {
-                }.getType());
+        GetSessionResponse rsp = restApiClient.sendRequest(req, new TypeToken<GetSessionResponse>() {
+        }.getType());
 
-        if (StringUtils.trimToNull(getSessionResponseRefresh.userId) != null) {
-            logger.debug("New access token obtained, expiry {}", getSessionResponseRefresh.expiresAt);
+        boolean hasUserId = StringUtils.trimToNull(rsp.userId) != null;
+        boolean hasEmail = rsp.email.length > 0;
+
+        // Initially userId was required, but it might not be returned in all cases on initial login
+        if ((requireUserId && hasUserId) || (!requireUserId && hasUserId) || hasEmail) {
+            logger.debug("New access token obtained, expiry {}", rsp.expiresAt);
 
             storage.put(STORAGE_KEY_ACCESS_TOKEN, restApiClient.getLastAccessTokenFromHeader());
-            storage.put(STORAGE_KEY_ACCESS_TOKEN_EXPIRY, getSessionResponseRefresh.expiresAt.toString());
-            storage.put(STORAGE_KEY_USERID, getSessionResponseRefresh.userId);
+            storage.put(STORAGE_KEY_ACCESS_TOKEN_EXPIRY, rsp.expiresAt.toString());
+            storage.put(STORAGE_KEY_USERID, rsp.userId);
             return true;
         } else {
             storage.remove(STORAGE_KEY_ACCESS_TOKEN);
@@ -300,7 +290,7 @@ public class AugustAccountHandler extends BaseBridgeHandler implements AccessTok
         logger.info("Polling for new account status/lock overview");
         try {
             if (isSessionExpired()) {
-                boolean loginOK = obtainNewSession();
+                boolean loginOK = obtainNewSession(true);
                 if (!loginOK) {
                     loginError();
                     return;
@@ -334,9 +324,7 @@ public class AugustAccountHandler extends BaseBridgeHandler implements AccessTok
             ZonedDateTime accessTokenExpiryTime = ZonedDateTime.parse(expiryString);
             logger.debug("Access token expiry time {}", expiryString);
             // Refresh token if expiry is in 7 days or less
-            if (!accessTokenExpiryTime.isBefore(ZonedDateTime.now().plus(7, ChronoUnit.DAYS))) {
-                return false;
-            }
+            return accessTokenExpiryTime.isBefore(ZonedDateTime.now().plusDays(7));
         }
         return true;
     }

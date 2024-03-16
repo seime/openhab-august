@@ -47,7 +47,7 @@ public class RestApiClient {
     public static final String HEADER_CONTENT_TYPE_APPLICATION_JSON = "application/json";
     private static final String API_KEY = "d9984f29-07a6-816e-e1c9-44ec9d1be431";
 
-    private HttpClient httpClient;
+    private final HttpClient httpClient;
 
     @Nullable
     private String accessToken = null;
@@ -55,7 +55,7 @@ public class RestApiClient {
     @Nullable
     private String apiEndpoint;
 
-    private Gson gson;
+    private final Gson gson;
     @Nullable
     private RequestLogger requestLogger = null;
     private AccessTokenUpdatedListener listener;

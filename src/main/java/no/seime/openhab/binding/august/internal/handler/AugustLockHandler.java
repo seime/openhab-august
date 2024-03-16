@@ -70,7 +70,7 @@ public class AugustLockHandler extends BaseThingHandler implements PubNubListene
     private LockConfiguration config;
 
     private RestApiClient restApiClient;
-    private Gson gson;
+    private final Gson gson;
 
     @Nullable
     private AugustAccountHandler handler;
@@ -104,7 +104,7 @@ public class AugustLockHandler extends BaseThingHandler implements PubNubListene
     private static final Map<String, String> lockTypeToLockName = new ConcurrentHashMap<>();
 
     // Map of userIds to human-readable names.
-    private Map<String, String> userIdToName = new HashMap<>();
+    private final Map<String, String> userIdToName = new HashMap<>();
 
     private Optional<ScheduledFuture<?>> statusFuture = Optional.empty();
 

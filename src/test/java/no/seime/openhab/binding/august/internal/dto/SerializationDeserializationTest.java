@@ -12,8 +12,7 @@
  */
 package no.seime.openhab.binding.august.internal.dto;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -54,7 +53,7 @@ class SerializationDeserializationTest {
                 .deSerializeFromClasspathResource("/mock_responses/get_session_response.json", type);
 
         assertEquals(ZonedDateTime.parse("2023-05-07T15:24:20.799Z"), message.expiresAt);
-        assertEquals(true, message.hasInstallId);
+        assertTrue(message.hasInstallId);
     }
 
     @Test
@@ -147,8 +146,8 @@ class SerializationDeserializationTest {
 
         assertEquals("locked", message.lockStatus.lockStatus);
         assertEquals(ZonedDateTime.parse("2023-01-07T15:54:31.935Z"), message.lockStatus.statusTimestamp);
-        assertEquals(true, message.lockStatus.isLockStatusChanged);
-        assertEquals(true, message.lockStatus.valid);
+        assertTrue(message.lockStatus.isLockStatusChanged);
+        assertTrue(message.lockStatus.valid);
         assertEquals("closed", message.lockStatus.doorStatus);
 
         assertEquals(2, message.userList.loaded.size());
