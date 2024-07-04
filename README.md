@@ -3,6 +3,13 @@
 This binding integrates some Yale/August locks that are linked to a Yale/August Connect WiFi Bridge - or have WiFi
 builtin.
 
+<img src="logo.png" width="200"/>
+
+[<img src="https://github.com/seime/support-me/blob/main/openHAB_workswith.png" width=300>](https://buymeacoffee.com/arnes)
+
+[<img src="https://github.com/seime/support-me/blob/main/beer_me.png" width=150>](https://buymeacoffee.com/arnes)
+
+
 ## Supported Things
 
 Door locks only.
